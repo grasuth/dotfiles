@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Users/gra/Documents/writing/old_writing'
+let g:netrw_dirhist_2='/Users/gra/dev/twagger/trunk/twagger'
+let g:netrw_dirhist_3='/Users/gra'
+let g:netrw_dirhist_4='/Users/gra/dev/mettaeggs'
+let g:netrw_dirhist_5='/Users/gra/dev/django_prod_calendar'
+let g:netrw_dirhist_6='/Users/gra/dev/tickmaker/backbone'
