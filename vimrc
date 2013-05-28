@@ -30,7 +30,6 @@ let mapleader = ","
 "vnoremap <C-n> :nohl<CR>
 "inoremap <C-n> :nohl<CR>
 
-
 " Quicksave command
 "" noremap <C-Z> :update<CR>
 "" vnoremap <C-Z> <C-C>:update<CR>
@@ -89,9 +88,9 @@ syntax on
 " Showing line numbers and length
 set number  " show line numbers
 set tw=79   " width of document (used by gd)
-set nowrap  " don't automatically wrap on load
-set fo-=t   " don't automatically wrap text when typing
-set colorcolumn=80
+set wrap  " don't automatically wrap on load
+set fo=qrn1   " don't automatically wrap text when typing
+set colorcolumn=79
 highlight ColorColumn ctermbg=233
 
 
@@ -165,7 +164,7 @@ let g:pymode_breakpoint = 0
 let g:pymode_syntax = 1
 let g:pymode_syntax_builtin_objs = 0
 let g:pymode_syntax_builtin_funcs = 0
-map <Leader>b Oimport ipdb; ipdb.set_trace() " BREAKPOINT<C-c>
+map <Leader>i Oimport pdb; pdb.set_trace()
 """"
 " Better navigating through omnicomplete option list
 " See http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim
@@ -213,13 +212,30 @@ nnoremap <leader>f :set columns=999 lines=999<cr>
 
 au BufLeave * :stopinsert
 
-" flake8 config 
-nmap <silent><Leader>x <Esc>:Khuno show<CR>
-
 " Line numbering
 set relativenumber
-nnoremap <leader>r :set relativenumber<cr>
-nnoremap <leader>n :set number<cr>
+nnoremap <leader>0 :set relativenumber<cr>
+nnoremap <leader>9 :set number<cr>
 
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+
+" Prevent file-changed warnings
+set autoread
+
+" Make complexity warning rarer (due to complex tests)
+let g:pymode_lint_mccabe_complexity = 12
+
+"sort out :W silliness -> map to :w
+cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
+
+" save on focus lost
+:au FocusLost * silent! wa
+
+" PyLint disables
+nnoremap <leader>1 :PyLintToggle<cr>
+
+" automatically write files on buffer changes
+set autowrite
+set autowriteall
+
 
