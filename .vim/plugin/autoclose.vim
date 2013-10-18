@@ -45,6 +45,8 @@
 "             released the first as 1.0, April 3, 2007
 
 " Setup -----------------------------------------------------{{{2
+finish
+
 if exists('g:autoclose_loaded') || &cp
     finish
 endif
