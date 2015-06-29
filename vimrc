@@ -1,13 +1,9 @@
-" new .vimrc for grasutgh compiled from
-" several sources including...
-" Sample .vimrc file by Martin Brochhaus
-" Presented at PyCon APAC 2012
-
 
 set nocompatible
 
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
+
 
 " Better copy & paste
 " When you want to paste large blocks of code into vim, press F2 before you
@@ -21,25 +17,14 @@ set mouse=a  " on OSX press ALT and click
 set bs=2     " make backspace behave like normal again
 
 " Rebind <Leader> key
+" I like to have it here becuase it is easier to reach than the default and
+" it is next to ``m`` and ``n`` which I use for navigating between tabs.
 let mapleader = ","
 
 " Bind nohl
-" Removes highlight of your last search
-" ``<C>`` stands for ``CTRL`` and therefore ``<C-n>`` stands for ``CTRL+n``
-"noremap <C-n> :nohl<CR>
-"vnoremap <C-n> :nohl<CR>
-"inoremap <C-n> :nohl<CR>
-
-" Quicksave command
-"" noremap <C-Z> :update<CR>
-"" vnoremap <C-Z> <C-C>:update<CR>
-"" inoremap <C-Z> <C-O>:update<CR>
-
-
-" Quick quit command
-"" noremap <Leader>e :quit<CR>  " Quit current window
-"" noremap <Leader>E :qa!<CR>   " Quit all windows
-
+noremap <C-n> :nohl<CR>
+vnoremap <C-n> :nohl<CR>
+inoremap <C-n> :nohl<CR>
 
 " bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
 " Every unnecessary keystroke that can be saved is good for your health :)
@@ -48,15 +33,8 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
-
-" easier moving between tabs
-"" map <Leader>n <esc>:tabprevious<CR>
-"" map <Leader>m <esc>:tabnext<CR>
-
-
 " map sort function to a key
 vnoremap <Leader>s :sort<CR>
-
 
 " easier moving of code blocks
 " Try to go into visual mode (v), thenselect several lines of code here and
@@ -64,40 +42,23 @@ vnoremap <Leader>s :sort<CR>
 vnoremap < <gv  " better indentation
 vnoremap > >gv  " better indentation
 
-
 " Show whitespace
 " MUST be inserted BEFORE the colorscheme command
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 au InsertLeave * match ExtraWhitespace /\s\+$/
 
-
-" Color scheme
-" mkdir -p ~/.vim/colors && cd ~/.vim/colors
-" wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
-set t_Co=256
-color wombat256mod
-
-
-" Enable syntax highlighting
-" You need to reload this file for the change to apply
-filetype off
-filetype plugin indent on
-syntax on
-
-
 " Showing line numbers and length
 set number  " show line numbers
 set tw=79   " width of document (used by gd)
-set wrap  " don't automatically wrap on load
-set fo=qrn1   " don't automatically wrap text when typing
-set colorcolumn=79
-highlight ColorColumn ctermbg=233
+set nowrap  " don't automatically wrap on load
+set fo=qrn1
+set colorcolumn=80
+" highlight ColorColumn ctermbg=233
 
 
 " easier formatting of paragraphs
 vmap Q gq
 nmap Q gqap
-
 
 " Useful settings
 set history=700
@@ -127,8 +88,6 @@ set noswapfile
 
 
 " Setup Pathogen to manage your plugins
-" mkdir -p ~/.vim/autoload ~/.vim/bundle
-" curl -so ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/HEAD/autoload/pathogen.vim
 " Now you can install any plugin into a .vim/bundle/plugin-name/ folder
 call pathogen#infect()
 
@@ -137,35 +96,47 @@ call pathogen#infect()
 " Python IDE Setup
 " ============================================================================
 
+" Color scheme
+" set t_Co=256
+"" color wombat256mod
+let g:solarized_visibility="high"
+let g:solarized_contrast="high"
+colorscheme solarized
+set background=dark
+syntax enable
+
+" Enable syntax highlighting
+" You need to reload this file for the change to apply
+filetype off
+filetype plugin indent on
+syntax on
 
 " Settings for vim-powerline
-" cd ~/.vim/bu1ndle
-" git clone git://github.com/Lokaltog/vim-powerline.git
 set laststatus=2
 
-
 " Settings for ctrlp
-" cd ~/.vim/bundle
-" git clone https://github.com/kien/ctrlp.vim.git
 let g:ctrlp_max_height = 30
 set wildignore+=*.pyc
 set wildignore+=*_build/*
 set wildignore+=*/coverage/*
 
+set wildmenu
+set wildmode=list:longest
 
-" Settings for python-mode
+set splitbelow
+set splitright
+
+set relativenumber
+nnoremap <leader>0 :set relativenumber<cr>
+nnoremap <leader>9 :set number<cr>
+
+" Settings for jedi-vim
 " cd ~/.vim/bundle
-" git clone https://github.com/klen/python-mode
-map <Leader>g :call RopeGotoDefinition()<CR>
-let ropevim_enable_shortcuts = 1
-let g:pymode_rope_goto_def_newwin = "vnew"
-let g:pymode_rope_extended_complete = 1
-let g:pymode_breakpoint = 0
-let g:pymode_syntax = 1
-let g:pymode_syntax_builtin_objs = 0
-let g:pymode_syntax_builtin_funcs = 0
-map <Leader>i Oimport pdb; pdb.set_trace()
-""""
+let g:jedi#usages_command = "<leader>z"
+let g:jedi#popup_on_dot = 0
+let g:jedi#popup_select_first = 0
+map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+
 " Better navigating through omnicomplete option list
 " See http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim
 set completeopt=longest,menuone
@@ -185,57 +156,24 @@ inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
 
 
 " Python folding
-" mkdir -p ~/.vim/ftplugin
-" wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
 set nofoldenable
 
-"
-" PEP8
-"
-let g:pep8_map='<leader>l'
-
-" wildcard menu
-set wildmenu
-set wildmode=list:longest
-
-" splits -- below and right works for me
-set splitbelow
-set splitright
-
-nnoremap ; :
-
-nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
-
-" screen stuff
-nnoremap <leader>w <C-w>v<C-w>l
-nnoremap <leader>f :set columns=999 lines=999<cr>
-
-au BufLeave * :stopinsert
-
-" Line numbering
-set relativenumber
-nnoremap <leader>0 :set relativenumber<cr>
-nnoremap <leader>9 :set number<cr>
-
-autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-
-" Prevent file-changed warnings
 set autoread
 
-" Make complexity warning rarer (due to complex tests)
-let g:pymode_lint_mccabe_complexity = 12
+set vb t_vb=
 
-"sort out :W silliness -> map to :w
-cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
+" flake8 settings
+let g:flake8_show_quickfirst=1
+let g:flake8_show_in_gutter=1
+let g:flake8_show_in_file=0
+autocmd BufWritePost *.py call Flake8()
+let g:flake8_quickfix_height=4
 
-" save on focus lost
-:au FocusLost * silent! wa
+func! DeleteTrailingWS()
+    exe "normal mz"
+    %s/\s\+$//ge
+    exe "normal `z"
+endfunc
 
-" PyLint disables
-nnoremap <leader>1 :PyLintToggle<cr>
-
-" automatically write files on buffer changes
-set autowrite
-set autowriteall
-
+autocmd BufWrite *.py :call DeleteTrailingWS()
 
