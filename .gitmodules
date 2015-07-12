@@ -25,3 +25,19 @@
 [submodule ".vim/bundle/vim-surround"]
 	path = .vim/bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
+[submodule ".vim/bundle/ctrlp.vim"]
+    path = .vim/bundle/ctrlp.vim
+    url = https://github.com/kien/ctrlp.vim.git
+[submodule ".vim/bundle/jedi-vim"]
+    path = .vim/bundle/jedi-vim
+    url = https://github.com/davidhalter/jedi-vim.git
+[submodule ".vim/bindle/vim-colors-solarized"]
+    path = .vim/bundle/vim-colors-solarized
+    url = https://github.com/altercation/vim-colors-solarized.git
+[submodule ".vim/bundle/vim-flake8"]
+    path = .vim/bundle/vim-flake8
+    url = https://github.com/nvie/vim-flake8.git
+[submodule ".vim/bundle/vim-airline"]
+    path = .vim/bundle/vim-airline
+    url = https://github.com/bling/vim-airline
+
