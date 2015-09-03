@@ -22,9 +22,9 @@ set bs=2     " make backspace behave like normal again
 let mapleader = ","
 
 " Bind nohl
-noremap <C-n> :nohl<CR>
-vnoremap <C-n> :nohl<CR>
-inoremap <C-n> :nohl<CR>
+noremap <Leader>n :nohl<CR>
+vnoremap <Leader>n :nohl<CR>
+inoremap <Leader>n :nohl<CR>
 
 " bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
 " Every unnecessary keystroke that can be saved is good for your health :)
@@ -66,9 +66,9 @@ set undolevels=700
 
 
 " Real programmers don't use TABs but spaces
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set shiftround
 set expandtab
 
@@ -116,6 +116,8 @@ set laststatus=2
 
 " Settings for ctrlp
 let g:ctrlp_max_height = 30
+let g:ctrlp_cmd = 'CtrlPMixed'
+let g:ctrlp_split_window = 0
 set wildignore+=*.pyc
 set wildignore+=*_build/*
 set wildignore+=*/coverage/*
@@ -158,8 +160,6 @@ inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
 " Python folding
 set nofoldenable
 
-set autoread
-
 set vb t_vb=
 
 " flake8 settings
@@ -177,3 +177,17 @@ endfunc
 
 autocmd BufWrite *.py :call DeleteTrailingWS()
 
+let g:syntastic_javascript_checkers = ['eslint']
+
+map <C-n> :NERDTreeToggle<CR>
+
+au FocusLost * silent! wa
+
+cmap W w
+cmap WQ wq
+cmap Wq wq
+
+" check file change every 4 seconds ('CursorHold') and reload the buffer upon
+" detecting change
+set autoread
+au CursorHold * checktime
