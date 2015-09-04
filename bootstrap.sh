@@ -1,5 +1,6 @@
 #!/bin/bash
 #
+# Rough bootstrap == to make it easy to get set up on a new shell
 # Start from repo base
 # Give destination path as arg
 # Note this will delete symlinks and move existing files out of the way.
@@ -14,7 +15,9 @@ SOURCE_PATH=`pwd`
 FILES=".vimrc
 .vim
 .gvimrc
-.tmux.conf"
+.tmux.conf
+.bash_aliases
+.bash_profile"
 
 cd $1 || exit 1
 
