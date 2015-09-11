@@ -191,3 +191,12 @@ cmap Wq wq
 " detecting change
 set autoread
 au CursorHold * checktime
+
+"
+" Editing help characters
+"
+" Remove last char on line
+:nmap <leader>x $x
+
+" Empty line
+:nmap <leader>$ 0d$
