@@ -66,12 +66,12 @@ set undolevels=700
 
 
 " Real programmers don't use TABs but spaces
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set shiftround
 set expandtab
 
+" Various language settings for tabs
+autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4 shiftround
+autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2 shiftround
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2 shiftround
 
 " Make search case insensitive
 set hlsearch
@@ -166,7 +166,6 @@ set vb t_vb=
 let g:flake8_show_quickfirst=1
 let g:flake8_show_in_gutter=1
 let g:flake8_show_in_file=0
-autocmd BufWritePost *.py call Flake8()
 let g:flake8_quickfix_height=4
 
 func! DeleteTrailingWS()
@@ -177,7 +176,16 @@ endfunc
 
 autocmd BufWrite *.py :call DeleteTrailingWS()
 
+let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_javascript_checkers = ['eslint']
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 map <C-n> :NERDTreeToggle<CR>
 
