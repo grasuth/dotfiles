@@ -196,7 +196,11 @@ au CursorHold * checktime
 " Editing help characters
 "
 " Remove last char on line
-:nmap <leader>x $x
+nmap <leader>x $x
 
 " Empty line
-:nmap <leader>$ 0d$
+nmap <leader>$ 0d$
+
+" add new lines in command mode
+nmap <CR> O<Esc>
+
