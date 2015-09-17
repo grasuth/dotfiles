@@ -1,10 +1,6 @@
 
 set nocompatible
 
-" Automatic reloading of .vimrc
-autocmd! bufwritepost .vimrc source %
-
-
 " Better copy & paste
 " When you want to paste large blocks of code into vim, press F2 before you
 " paste. At the bottom you should see ``-- INSERT (paste) --``.
@@ -86,6 +82,15 @@ set nobackup
 set nowritebackup
 set noswapfile
 
+function! RefreshUI()
+  if exists(':AirlineRefresh')
+    AirlineRefresh
+  else
+    " Clear & redraw the screen, then redraw all statuslines.
+    redrawstatus!
+  endif
+endfunction
+
 
 " Setup Pathogen to manage your plugins
 " Now you can install any plugin into a .vim/bundle/plugin-name/ folder
@@ -110,9 +115,6 @@ syntax enable
 filetype off
 filetype plugin indent on
 syntax on
-
-" Settings for vim-powerline
-set laststatus=2
 
 " Settings for ctrlp
 let g:ctrlp_max_height = 30
@@ -179,9 +181,9 @@ autocmd BufWrite *.py :call DeleteTrailingWS()
 
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_javascript_checkers = ['eslint']
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -215,4 +217,35 @@ nmap <CR> O<Esc>
 
 "Airline Settings
 let g:airline_theme='badwolf'
+let g:airline_powerline_fonts=0
+" unicode symbols
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+function! RefreshUI()
+  if exists(':AirlineRefresh')
+    AirlineRefresh
+  else
+    " Clear & redraw the screen, then redraw all statuslines.
+    redraw!
+    redrawstatus!
+  endif
+endfunction
+
+au BufWritePost .vimrc source $MYVIMRC | :call RefreshUI()
 
