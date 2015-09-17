@@ -214,5 +214,5 @@ nmap <leader>$ 0d$
 nmap <CR> O<Esc>
 
 "Airline Settings
-AirlineTheme badwolf
+let g:airline_theme='badwolf'
 
