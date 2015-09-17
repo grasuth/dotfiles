@@ -17,11 +17,6 @@ set bs=2     " make backspace behave like normal again
 " it is next to ``m`` and ``n`` which I use for navigating between tabs.
 let mapleader = ","
 
-" Bind nohl
-noremap <Leader>n :nohl<CR>
-vnoremap <Leader>n :nohl<CR>
-inoremap <Leader>n :nohl<CR>
-
 " bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
 " Every unnecessary keystroke that can be saved is good for your health :)
 map <c-j> <c-w>j
@@ -81,16 +76,6 @@ set smartcase
 set nobackup
 set nowritebackup
 set noswapfile
-
-function! RefreshUI()
-  if exists(':AirlineRefresh')
-    AirlineRefresh
-  else
-    " Clear & redraw the screen, then redraw all statuslines.
-    redrawstatus!
-  endif
-endfunction
-
 
 " Setup Pathogen to manage your plugins
 " Now you can install any plugin into a .vim/bundle/plugin-name/ folder
@@ -186,9 +171,12 @@ let g:syntastic_javascript_checkers = ['eslint']
 "set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" disable angular errors
+let g:syntastic_html_tidy_ignore_errors=['proprietary attribute "ng-']
 
 map <C-n> :NERDTreeToggle<CR>
 
@@ -237,15 +225,9 @@ let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 
-function! RefreshUI()
-  if exists(':AirlineRefresh')
-    AirlineRefresh
-  else
-    " Clear & redraw the screen, then redraw all statuslines.
-    redraw!
-    redrawstatus!
-  endif
-endfunction
+" Make sure modeline is visible
+set laststatus=2
 
-au BufWritePost .vimrc source $MYVIMRC | :call RefreshUI()
-
+:nmap <leader>n :lne<cr>
+:nmap <leader>l :Errors<cr>
+:nmap <leader>c :lcl<cr>
