@@ -129,8 +129,9 @@ set splitbelow
 set splitright
 
 set relativenumber
-nnoremap <leader>0 :set relativenumber<cr>
+nnoremap <leader>0 :set norelativenumber<cr>:set nonumber<cr>
 nnoremap <leader>9 :set number<cr>
+nnoremap <leader>8 :set relativenumber<cr>
 
 " Settings for jedi-vim
 " cd ~/.vim/bundle
@@ -203,4 +204,7 @@ nmap <leader>$ 0d$
 
 " add new lines in command mode
 nmap <CR> O<Esc>
+
+"Airline Settings
+AirlineTheme badwolf
 
