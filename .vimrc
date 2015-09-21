@@ -229,5 +229,5 @@ let g:airline_symbols.whitespace = 'Ξ'
 set laststatus=2
 
 :nmap <leader>n :lne<cr>
-:nmap <leader>l :Errors<cr>
+:nmap <leader>l :Errors<cr>:ll<cr>
 :nmap <leader>c :lcl<cr>
