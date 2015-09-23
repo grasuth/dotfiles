@@ -107,6 +107,7 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_split_window = 0
 set wildignore+=*.pyc
 set wildignore+=*_build/*
+set wildignore+=dist/*
 set wildignore+=*/coverage/*
 
 set wildmenu
