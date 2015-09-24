@@ -105,10 +105,14 @@ syntax on
 let g:ctrlp_max_height = 30
 let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_split_window = 0
+let g:ctrlp_working_path_mode = 'cra'
 set wildignore+=*.pyc
 set wildignore+=*_build/*
-set wildignore+=dist/*
 set wildignore+=*/coverage/*
+set wildignore+=*/dist/*
+set wildignore+=*/fingerprinted/*
+set wildignore+=*/node_modules/*
+set wildignore+=*/vendor/*
 
 set wildmenu
 set wildmode=list:longest
@@ -141,6 +145,7 @@ function! OmniPopup(action)
     endif
     return a:action
 endfunction
+
 
 inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
 inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
