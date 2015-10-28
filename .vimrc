@@ -63,6 +63,9 @@ set expandtab
 autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4 shiftround
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2 shiftround
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2 shiftround
+autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2 shiftround
+autocmd FileType less setlocal shiftwidth=2 tabstop=2 softtabstop=2 shiftround
+autocmd FileType conf setlocal shiftwidth=2 tabstop=2 softtabstop=2 shiftround
 
 " Make search case insensitive
 set hlsearch
