@@ -240,3 +240,6 @@ set laststatus=2
 :nmap <leader>n :lne<cr>
 :nmap <leader>l :Errors<cr>:ll<cr>
 :nmap <leader>c :lcl<cr>
+
+"C9 compatible
+:nmap <leader>e :CtrlPMixed<cr>
