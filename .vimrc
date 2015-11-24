@@ -213,7 +213,9 @@ nmap <leader>x $x
 nmap <leader>$ 0d$
 
 " add new lines in command mode
-nmap <CR> O<Esc>
+" disabled -- messes up spacing a bit easy.
+" nmap <CR> O<Esc>
+nmap <leader>o O<esc>
 
 "Airline Settings
 let g:airline_theme='badwolf'
@@ -246,3 +248,5 @@ set laststatus=2
 
 "C9 compatible
 :nmap <leader>e :CtrlPMixed<cr>
+
+nmap <leader>t ithis.<esc>
