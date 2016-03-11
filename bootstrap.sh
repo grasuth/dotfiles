@@ -17,7 +17,8 @@ FILES=".vimrc
 .gvimrc
 .tmux.conf
 .bash_aliases
-.bash_profile"
+.bash_profile
+.git_prompt.sh"
 
 cd $1 || exit 1
 
