@@ -1,4 +1,5 @@
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
+[ -f ~/.bashrc ] && . ~/.bashrc
 set -o vi
 if [ -f ~/.git-completion.bash ]; then
           . ~/.git-completion.bash
