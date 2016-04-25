@@ -16,6 +16,7 @@ FILES=".vimrc
 .vim
 .gvimrc
 .tmux.conf
+.bashrc
 .bash_aliases
 .bash_profile
 .git_prompt.sh"
