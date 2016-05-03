@@ -19,6 +19,7 @@ FILES=".vimrc
 .bashrc
 .bash_aliases
 .bash_profile
+.git-completion.bash
 .git_prompt.sh"
 
 cd $1 || exit 1
