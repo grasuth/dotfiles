@@ -61,16 +61,17 @@ set expandtab
 
 " Various language settings for tabs
 autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4 shiftround
-autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2 shiftround
-autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2 shiftround
-autocmd FileType less setlocal shiftwidth=2 tabstop=2 softtabstop=2 shiftround
-autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2 shiftround
-autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2 shiftround
-autocmd FileType typescript setlocal shiftwidth=2 tabstop=2 softtabstop=2 shiftround
-autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2 shiftround
-autocmd FileType less setlocal shiftwidth=2 tabstop=2 softtabstop=2 shiftround
-autocmd FileType conf setlocal shiftwidth=2 tabstop=2 softtabstop=2 shiftround
+autocmd FileType html setlocal shiftwidth=4 tabstop=4 softtabstop=4 shiftround
+autocmd FileType less setlocal shiftwidth=4 tabstop=4 softtabstop=4 shiftround
+autocmd FileType htmldjango setlocal shiftwidth=4 tabstop=4 softtabstop=4 shiftround
+autocmd FileType javascript setlocal shiftwidth=4 tabstop=4 softtabstop=4 shiftround
+autocmd FileType typescript setlocal shiftwidth=4 tabstop=4 softtabstop=4 shiftround
+autocmd FileType css setlocal shiftwidth=4 tabstop=4 softtabstop=4 shiftround
+autocmd FileType less setlocal shiftwidth=4 tabstop=4 softtabstop=4 shiftround
+autocmd FileType conf setlocal shiftwidth=4 tabstop=4 softtabstop=4 shiftround
+autocmd FileType json setlocal shiftwidth=4 tabstop=4 softtabstop=4 shiftround
 
+au BufRead,BufNewFile *.html.ts set filetype=html
 " Make search case insensitive
 set hlsearch
 set incsearch
@@ -120,7 +121,11 @@ set wildignore+=*/dist/*
 set wildignore+=*/fingerprinted/*
 set wildignore+=*/node_modules/*
 set wildignore+=*/vendor/*
-
+set wildignore+=*.spec.js
+set wildignore+=*.component.js
+set wildignore+=*.directive.js
+set wildignore+=*.service.js
+set wildignore+=*.js.map
 set wildmenu
 set wildmode=list:longest
 
